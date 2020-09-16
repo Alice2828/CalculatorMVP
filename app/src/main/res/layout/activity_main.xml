@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorDark"
+    tools:context=".view.MainActivity">
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:textAlignment="textEnd"
+        android:textColor="@color/colorLight"
+        android:textSize="40dp"
+        android:background="@color/colorPrimaryDark"/>
+    <TextView
+        android:id="@+id/input"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:padding="30dp"
+        android:textAlignment="textEnd"
+        android:textColor="@color/colorLight"
+        android:textSize="40dp"
+        android:background="@color/colorPrimaryDark"/>
+
+
+
+    <TableLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_margin="10dp"
+
+
+        android:stretchColumns="*"
+        >
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/sqrt"
+                style="@android:style/Widget.Holo.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorDark"
+
+                android:padding="18dip"
+                android:text="√"
+                android:textAllCaps="false"
+                android:textColor="@color/colorLight"
+                android:textSize="35sp" />
+
+            <Button
+                android:id="@+id/pow"
+                style="@android:style/Widget.Holo.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="18dip"
+                android:backgroundTint="@color/colorDark"
+                android:textSize="35sp"
+
+
+                android:text="^"
+                android:textColor="@color/colorLight" />
+
+            <Button
+                android:id="@+id/percent"
+                style="@android:style/Widget.Holo.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorDark"
+                android:textSize="35sp"
+
+                android:text="%"
+                android:padding="18dip"
+                android:textColor="@color/colorLight" />
+
+            <Button
+                android:id="@+id/clear"
+
+                android:layout_width="wrap_content"
+                android:textSize="35sp"
+                android:layout_height="wrap_content"
+                android:padding="18dip"
+                android:backgroundTint="@color/colorDark"
+                android:text="C"
+
+                android:textColor="@color/colorYellow" />
+
+
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/seven"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@android:style/Widget.Holo.Button.Borderless"
+                android:textSize="35sp"
+                android:padding="18dip"
+                android:textColor="@color/colorLight"
+                android:backgroundTint="@color/colorDark"
+                android:text="7" />
+
+            <Button
+                android:id="@+id/eight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@android:style/Widget.Holo.Button.Borderless"
+                android:textSize="35sp"
+                android:padding="18dip"
+                android:textColor="@color/colorLight"
+                android:backgroundTint="@color/colorDark"
+
+                android:text="8" />
+
+            <Button
+                android:id="@+id/nine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@android:style/Widget.Holo.Button.Borderless"
+                android:textSize="35sp"
+                android:padding="18dip"
+                android:textColor="@color/colorLight"
+                android:backgroundTint="@color/colorDark"
+                android:text="9" />
+
+            <Button
+                android:id="@+id/divide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textSize="35sp"
+                android:padding="18dip"
+                android:textColor="@color/colorYellow"
+
+                android:backgroundTint="@color/colorDark"
+                android:text="/" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+
+            <Button
+                android:id="@+id/four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="35sp"
+                android:padding="18dip"
+                android:textColor="@color/colorLight"
+                style="@android:style/Widget.Holo.Button.Borderless"
+                android:backgroundTint="@color/colorDark"
+
+                android:text="4" />
+
+            <Button
+                android:id="@+id/five"
+                android:layout_width="wrap_content"
+                style="@android:style/Widget.Holo.Button.Borderless"
+                android:layout_height="wrap_content"
+                android:textSize="35sp"
+                android:padding="18dip"
+                android:textColor="@color/colorLight"
+                android:backgroundTint="@color/colorDark"
+                android:text="5" />
+
+            <Button
+                android:id="@+id/six"
+
+                android:textColor="@color/colorLight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="35sp"
+                style="@android:style/Widget.Holo.Button.Borderless"
+                android:padding="18dip"
+                android:backgroundTint="@color/colorDark"
+                android:text="6" />
+
+
+            <Button
+                android:id="@+id/multip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textSize="35sp"
+                android:padding="18dip"
+                android:textColor="@color/colorYellow"
+                android:backgroundTint="@color/colorDark"
+                android:text="*" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/one"
+
+                android:textColor="@color/colorLight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="35sp"
+                style="@android:style/Widget.Holo.Button.Borderless"
+                android:padding="18dip"
+                android:backgroundTint="@color/colorDark"
+                android:text="1" />
+
+            <Button
+                android:id="@+id/two"
+
+                android:textColor="@color/colorLight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@android:style/Widget.Holo.Button.Borderless"
+                android:textSize="35sp"
+                android:padding="18dip"
+                android:backgroundTint="@color/colorDark"
+                android:text="2" />
+
+            <Button
+                android:id="@+id/three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@android:style/Widget.Holo.Button.Borderless"
+                android:textSize="35sp"
+                android:padding="18dip"
+                android:textColor="@color/colorLight"
+                android:backgroundTint="@color/colorDark"
+                android:text="3" />
+
+            <Button
+                android:id="@+id/minus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="35sp"
+                android:padding="18dip"
+                android:textColor="@color/colorYellow"
+
+                android:backgroundTint="@color/colorDark"
+
+                android:text="-" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/dot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="35sp"
+                style="@android:style/Widget.Holo.Button.Borderless"
+                android:padding="18dip"
+                android:textColor="@color/colorLight"
+                android:backgroundTint="@color/colorDark"
+
+                android:text="." />
+
+            <Button
+                android:id="@+id/zero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="35sp"
+                style="@android:style/Widget.Holo.Button.Borderless"
+                android:padding="18dip"
+                android:textColor="@color/colorLight"
+                android:backgroundTint="@color/colorDark"
+
+                android:text="0" />
+
+            <Button
+                android:id="@+id/eq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="35sp"
+                android:padding="18dip"
+                android:textColor="@color/colorLight"
+                style="@android:style/Widget.Holo.Button.Borderless"
+                android:backgroundTint="@color/colorDark"
+
+                android:text="=" />
+
+            <Button
+                android:id="@+id/plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="35sp"
+                android:padding="18dip"
+                android:outlineAmbientShadowColor="@color/colorLight"
+                android:textColor="@color/colorYellow"
+                android:backgroundTint="@color/colorDark"
+
+                android:text="+" />
+
+
+        </TableRow>
+
+
+    </TableLayout>
+</LinearLayout>
+

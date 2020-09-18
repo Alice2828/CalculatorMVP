@@ -4,6 +4,8 @@ import com.example.calculatorkotlin.contract.ContractInterface
 import com.example.calculatorkotlin.view.Mode
 import com.example.calculatorkotlin.view.Sign
 import java.lang.Exception
+import java.util.*
+import kotlin.math.abs
 import kotlin.math.log10
 import kotlin.math.pow
 
@@ -21,12 +23,7 @@ class ModelActivity : ContractInterface.Model {
 
     override fun clear() {
         try {
-            if (data == "Infinity") {
-                data = ""
-            }
-            if (data == "Error") {
-                data = ""
-            }
+            simple()
             if (data.length != 1) {
                 try {
                     data = data
@@ -59,12 +56,7 @@ class ModelActivity : ContractInterface.Model {
     }
 
     override fun dot() {
-        if (data == "Infinity") {
-            data = ""
-        }
-        if (data == "Error") {
-            data = ""
-        }
+        simple()
         if (data.contains(".")) dot = 1
         if (dot != 1) {
             if (data.isEmpty()) data = "0"
@@ -74,12 +66,7 @@ class ModelActivity : ContractInterface.Model {
     }
 
     override fun number(numb: Int) {
-        if (data == "Infinity") {
-            data = ""
-        }
-        if (data == "Error") {
-            data = ""
-        }
+        simple()
         if (mode != Mode.START && mode != Mode.EQUAL && negative == 0 || second == 1) {
             mode = Mode.START
             data = ""
@@ -91,12 +78,7 @@ class ModelActivity : ContractInterface.Model {
     }
 
     override fun zero() {
-        if (data == "Infinity") {
-            data = ""
-        }
-        if (data == "Error") {
-            data = ""
-        }
+        simple()
         if (mode != Mode.START && mode != Mode.EQUAL && negative == 0 || second == 1) {
             mode = Mode.START
             data = ""
@@ -112,17 +94,8 @@ class ModelActivity : ContractInterface.Model {
     override fun plus() {
         mode = Mode.PLUS
         sign = Sign.PLUS
-        if (data == "Infinity") {
-            data = ""
-        }
-        if (data == "Error") {
-            data = ""
-        }
-        try {
-            num1 = data.toDouble()
-        } catch (e: NumberFormatException) {
-            data = "Error"
-        }
+        simple()
+        num1ToDouble(1)
         dot = 0
         second = 1
     }
@@ -130,8 +103,7 @@ class ModelActivity : ContractInterface.Model {
     override fun minus() {
         mode = Mode.MINUS
         sign = Sign.MINUS
-        if (data === "Infinity") data = ""
-        if (data === "Error") data = ""
+        simple()
         if (data.isEmpty()) {
             data += "-"
             negative = 1
@@ -144,14 +116,8 @@ class ModelActivity : ContractInterface.Model {
     override fun multip() {
         mode = Mode.MULTIP
         sign = Sign.MULTIP
-        if (data == "Infinity") {
-            data = ""
-        }
-        try {
-            num1 = data.toDouble()
-        } catch (e: NumberFormatException) {
-            data = "Error"
-        }
+        simple()
+        num1ToDouble(1)
         dot = 0
         second = 1
     }
@@ -159,17 +125,8 @@ class ModelActivity : ContractInterface.Model {
     override fun divide() {
         mode = Mode.DIVIDE
         sign = Sign.DIVIDE
-        if (data == "Infinity") {
-            data = ""
-        }
-        if (data == "Error") {
-            data = ""
-        }
-        try {
-            num1 = data.toDouble()
-        } catch (e: NumberFormatException) {
-            data = "Infinity"
-        }
+        simple()
+        num1ToDouble(1)
         dot = 0
         second = 1
     }
@@ -177,19 +134,10 @@ class ModelActivity : ContractInterface.Model {
     override fun sqrt() {
         mode = Mode.SQRT
         sign = Sign.SQRT
-        if (data == "Infinity") {
-            data = ""
-        }
-        if (data == "Error") {
-            data = ""
-        }
-        try {
-            num1 = data.toDouble()
-        } catch (e: NumberFormatException) {
-            data = "Infinity"
-        }
+        simple()
+        num1ToDouble(1)
         dot = 0
-        data = String.format("%.0f", kotlin.math.sqrt(num1))
+        data = String.format(Locale.US, "%.2f", kotlin.math.sqrt(num1))
         mode = Mode.EQUAL
         second = 1
     }
@@ -197,34 +145,16 @@ class ModelActivity : ContractInterface.Model {
     override fun percent() {
         mode = Mode.PERCENT
         sign = Sign.PERCENT
-        if (data == "Infinity") {
-            data = ""
-        }
-        if (data == "Error") {
-            data = ""
-        }
-        try {
-            num1 = data.toDouble()
-        } catch (e: NumberFormatException) {
-            data = "Infinity"
-        }
+        simple()
+        num1ToDouble(1)
         dot = 0
     }
 
     override fun pow() {
         mode = Mode.POW
         sign = Sign.POW
-        if (data == "Infinity") {
-            data = ""
-        }
-        if (data == "Error") {
-            data = ""
-        }
-        try {
-            num1 = data.toDouble()
-        } catch (e: NumberFormatException) {
-            data = "Infinity"
-        }
+        simple()
+        num1ToDouble(1)
         dot = 0
         second = 1
     }
@@ -232,19 +162,10 @@ class ModelActivity : ContractInterface.Model {
     override fun sin() {
         mode = Mode.OPERATION
         sign = Sign.OPERATION
-        if (data == "Infinity") {
-            data = ""
-        }
-        if (data == "Error") {
-            data = ""
-        }
-        try {
-            num1 = data.toDouble()
-        } catch (e: NumberFormatException) {
-            data = "Infinity"
-        }
+        simple()
+        num1ToDouble(1)
         dot = 0
-        data = String.format("%.2f", kotlin.math.sin(num1))
+        data = String.format(Locale.US, "%.2f", kotlin.math.sin(num1))
         mode = Mode.EQUAL
         second = 1
     }
@@ -252,19 +173,10 @@ class ModelActivity : ContractInterface.Model {
     override fun cos() {
         mode = Mode.OPERATION
         sign = Sign.OPERATION
-        if (data == "Infinity") {
-            data = ""
-        }
-        if (data == "Error") {
-            data = ""
-        }
-        try {
-            num1 = data.toDouble()
-        } catch (e: NumberFormatException) {
-            data = "Infinity"
-        }
+        simple()
+        num1ToDouble(1)
         dot = 0
-        data = String.format("%.2f", kotlin.math.cos(num1))
+        data = String.format(Locale.US, "%.2f", kotlin.math.cos(num1))
         mode = Mode.EQUAL
         second = 1
     }
@@ -272,19 +184,10 @@ class ModelActivity : ContractInterface.Model {
     override fun tan() {
         mode = Mode.OPERATION
         sign = Sign.OPERATION
-        if (data == "Infinity") {
-            data = ""
-        }
-        if (data == "Error") {
-            data = ""
-        }
-        try {
-            num1 = data.toDouble()
-        } catch (e: NumberFormatException) {
-            data = "Infinity"
-        }
+        simple()
+        num1ToDouble(1)
         dot = 0
-        data = String.format("%.2f", kotlin.math.tan(num1))
+        data = String.format(Locale.US, "%.2f", kotlin.math.tan(num1))
         mode = Mode.EQUAL
         second = 1
     }
@@ -293,25 +196,19 @@ class ModelActivity : ContractInterface.Model {
         mode = Mode.OPERATION
         sign = Sign.OPERATION
         var s: Long = 0
-        if (data == "Infinity") {
-            data = ""
-        }
-        if (data == "Error") {
-            data = ""
-        }
+        simple()
         try {
             s = 1
-            num1 = Math.abs(data.toInt()).toDouble()
+            num1 = abs(data.toInt()).toDouble()
             var i = 1
             while (i <= num1) {
                 s *= i.toLong()
                 i++
             }
         } catch (e: NumberFormatException) {
-            data = "Infinity"
+            data = "Error"
         }
-        if (s == 0L) data = "Error" else data =
-            s.toString()
+        data = if (s == 0L) "Error" else s.toString()
         dot = 0
         mode = Mode.EQUAL
         second = 1
@@ -320,19 +217,10 @@ class ModelActivity : ContractInterface.Model {
     override fun ln() {
         mode = Mode.OPERATION
         sign = Sign.OPERATION
-        if (data == "Infinity") {
-            data = ""
-        }
-        if (data == "Error") {
-            data = ""
-        }
-        try {
-            num1 = data.toDouble()
-        } catch (e: NumberFormatException) {
-            data = "Infinity"
-        }
+        simple()
+        num1ToDouble(1)
         dot = 0
-        data = String.format("%.2f", kotlin.math.ln(num1))
+        data = String.format(Locale.US, "%.2f", kotlin.math.ln(num1))
         mode = Mode.EQUAL
         second = 1
     }
@@ -341,55 +229,49 @@ class ModelActivity : ContractInterface.Model {
         mode = Mode.OPERATION
         sign = Sign.OPERATION
         simple()
-        try {
-            num1 = data.toDouble()
-        } catch (e: NumberFormatException) {
-            data = "Infinity"
-        }
+        num1ToDouble(1)
         dot = 0
-        data = String.format("%.2f", log10(num1))
+        data = String.format(Locale.US, "%.2f", log10(num1))
         mode = Mode.EQUAL
         second = 1
     }
 
     private fun simple() {
-        if (data == "Infinity") {
-            data = ""
-        }
-        if (data == "Error") {
+        if (data == "Infinity" || data == "Error") {
             data = ""
         }
     }
 
     override fun eq() {
-        if (data == "Infinity") {
-            data = ""
-        }
-        if (data == "Error") {
-            data = ""
-        }
-        try {
-            num2 = data.toDouble()
-        } catch (e: NumberFormatException) {
-            data = "Infinity"
-        }
-        if (sign == Sign.PLUS) data =
-            String.format(
+        simple()
+        num1ToDouble(2)
+        when (sign) {
+            Sign.PLUS -> data =
+                String.format(
+                    Locale.US,
+                    "%.2f",
+                    num1 + num2
+                )
+            Sign.MINUS -> data =
+                String.format(
+                    Locale.US,
+                    "%.2f",
+                    num1 - num2
+                )
+            Sign.MULTIP -> data =
+                String.format(Locale.US, "%.2f", num1 * num2)
+            Sign.DIVIDE -> {
+                data = if (num2 == 0.0) "Error" else String.format(Locale.US, "%.2f", num1 / num2)
+            }
+            Sign.POW -> data = String.format(
+                Locale.US,
                 "%.2f",
-                num1 + num2
-            ) else if (sign == Sign.MINUS) data =
-            String.format(
-                "%.2f",
-                num1 - num2
-            ) else if (sign == Sign.MULTIP) data =
-            String.format("%.2f", num1 * num2) else if (sign == Sign.DIVIDE) {
-            data = if (num2 == 0.0) "Error" else String.format("%.2f", num1 / num2)
-        } else if (sign == Sign.POW) data = String.format(
-            "%.2f",
-            num1.pow(num2)
-        )
-        else if (sign == Sign.PERCENT) data =
-            String.format("%.2f", num1 * 0.01) else data = "Error"
+                num1.pow(num2)
+            )
+            Sign.PERCENT -> data =
+                String.format(Locale.US, "%.2f", num1 * 0.01)
+            else -> data = "Error"
+        }
         mode = Mode.EQUAL
     }
 
@@ -433,5 +315,20 @@ class ModelActivity : ContractInterface.Model {
         this.data = data
     }
 
+    private fun num1ToDouble(whichNum:Int) {
+        if (whichNum==1) {
+            try {
+                num1 = data.toDouble()
+            } catch (e: NumberFormatException) {
+                data = "Error"
+            }
+        }
+        else
+            try {
+                num2 = data.toDouble()
+            } catch (e: NumberFormatException) {
+                data = "Error"
+            }
+    }
 
 }
